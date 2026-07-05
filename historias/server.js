@@ -12,7 +12,7 @@ import authorRoutes from './routes/authorRoutes.js';
 import historyRoutes from './routes/historyRoutes.js';
 import tallerRoutes from './routes/tallerRoutes.js';
 import userRoutes from './routes/userRoutes.js';
-import { verifyToken } from './middleware/auth.js';
+import { protectMutations } from './middleware/auth.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -58,10 +58,10 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/users', userRoutes);
-app.use('/actors', verifyToken, actorRoutes);
-app.use('/authors', verifyToken, authorRoutes);
-app.use('/histories', verifyToken, historyRoutes);
-app.use('/tallers', verifyToken, tallerRoutes);
+app.use('/actors', protectMutations, actorRoutes);
+app.use('/authors', protectMutations, authorRoutes);
+app.use('/histories', protectMutations, historyRoutes);
+app.use('/tallers', protectMutations, tallerRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

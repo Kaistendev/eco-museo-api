@@ -15,3 +15,11 @@ export const verifyToken = (req, res, next) => {
     next();
   });
 };
+
+export const protectMutations = (req, res, next) => {
+  const publicMethods = ['GET', 'OPTIONS'];
+  if (publicMethods.includes(req.method)) {
+    return next();
+  }
+  verifyToken(req, res, next);
+};
