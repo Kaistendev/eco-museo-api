@@ -1,7 +1,5 @@
 import Actor from '../model/actor.js';
 
-import fs from 'fs/promises';
-
 
 export class ActorController {
 
@@ -169,18 +167,8 @@ export class ActorController {
     } catch (error) {
         console.error('Error al subir la imagen del actor en el controlador:', error);
         res.status(500).json({ message: 'Error al subir la imagen del actor', error: error.message });
-    } finally {
-        // Opcional: Eliminar el archivo temporal del servidor después de subirlo a Supabase
-        if (req.file && req.file.path) {
-            try {
-                await fs.unlink(req.file.path);
-                console.log('Archivo temporal eliminado:', req.file.path);
-            } catch (unlinkError) {
-                console.error('Error al eliminar el archivo temporal:', unlinkError);
-            }
-        }
-      }
     }
+  }
 
   static async deleteActorImage(req, res) {
     const { actorId } = req.params;

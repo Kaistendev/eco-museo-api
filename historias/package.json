@@ -18,8 +18,7 @@
     "jsonwebtoken": "9.0.2",
     "multer": "1.4.5-lts.2",
     "pg": "8.15.5",
-    "postgres": "3.4.5",
-    "zod": "3.24.3"
+    "postgres": "3.4.5"
   },
   "devDependencies": {
     "@types/bun": "latest"

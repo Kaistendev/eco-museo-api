@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
-import AuthService from '../sevices/AuthService';
+import AuthService from '../services/AuthService';
 
 const API_URL = 'http://localhost:3000';
 

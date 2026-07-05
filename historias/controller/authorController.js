@@ -1,5 +1,4 @@
 import Author from "../model/author.js";
-import fs from 'fs/promises';
 export class AuthorController {
   
   static async getAllAuthors(req, res) {
@@ -163,19 +162,9 @@ export class AuthorController {
     } catch (error) {
         console.error('Error al subir la imagen del autor en el controlador:', error);
         res.status(500).json({ message: 'Error al subir la imagen del autor', error: error.message });
-    } finally {
-        // Opcional: Eliminar el archivo temporal del servidor después de subirlo a Supabase
-        if (req.file && req.file.path) {
-            try {
-                await fs.unlink(req.file.path);
-                console.log('Archivo temporal eliminado:', req.file.path);
-            } catch (unlinkError) {
-                console.error('Error al eliminar el archivo temporal:', unlinkError);
-            }
-        }
-      }
     }
-  
+  }
+
   static async deleteAuthorImage(req, res) {
     try {
       const authorId = req.params.authorId;

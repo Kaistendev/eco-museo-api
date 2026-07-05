@@ -178,25 +178,6 @@ class Actor {
     }
   }
 
-  static async deleteActorHistory(id) {
-    try {
-      const { data, error } = await supabase
-        .from('actor_history')
-        .delete()
-        .eq('idactor', id)
-        .select()
-        .single();
-
-      if (error) {
-        console.error('Error al eliminar actor:', error);
-        throw error;
-      }
-      return data;
-    } catch (error) {
-      throw error;
-    }
-  }
-
   static async uploadImage(actorId, image) {
     console.log('Iniciando uploadImage para actorId:', actorId);
     try {

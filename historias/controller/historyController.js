@@ -1,5 +1,4 @@
 import History from "../model/history.js";
-import fs from 'fs/promises';
 
 export class HistoryController {
   static async getAllHistory(req, res) {
@@ -207,18 +206,7 @@ export class HistoryController {
         error: 'Error al subir la imagen de la historia',
         message: error.message
       })
-    }finally{
-      if(req.file && req.file.path){
-        try{
-          await fs.unlink(req.file.path)
-          console.log('Archivo temporal eliminado:', req.file.path)
-        }catch(unlinkError){
-          console.error('Error al eliminar el archivo temporal:', unlinkError)
-        }
-      }
     }
-
- 
   }
 
   static async deleteHistoryImage(req, res){
